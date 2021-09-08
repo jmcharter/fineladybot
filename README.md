@@ -1,6 +1,6 @@
 # FineLadyBot
 ![version](https://img.shields.io/badge/Version-0.3.1-informational)
-![license-MIT](https://img.shields.io/badge/License-MIT-yellow)
+![license-MIT](https://img.shields.io/github/license/jmcharter/fineladybot)
 
 FineLadyBot is a bot that runs on behalf of [/r/banbury](https://reddit.com/r/banbury), which is a subreddit for discussion of town in Oxfordshire, UK.
 

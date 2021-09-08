@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.4.1
+- Add requirements.txt
+
 ## 0.4.0
 - Add link to submission comment allowing users to opt-out
 
