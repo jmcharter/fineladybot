@@ -1,6 +1,9 @@
 import sqlite3
 from sqlite3 import Error
 from datetime import datetime
+from pathlib import Path
+
+filepath = Path(__file__).parent.absolute()
 
 
 class database:
@@ -12,7 +15,7 @@ class database:
     def db_connection(self):
         con = None
         try:
-            con = sqlite3.connect(str(self.name) + ".db")
+            con = sqlite3.connect(str(filepath.joinpath(self.name)) + ".db")
             # self.logger.info("Connected to finelady.db", sqlite3.version)
         except Error as e:
             # self.logger.info(e)

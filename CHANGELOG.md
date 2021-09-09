@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.1
+- Create db file in same directory as script if it doesn't already exist
+
 ## 1.0.0
 - Rework stream parsing to handle submissions and inbox messages
 - Create a database to store opt-outs if one doesn't exist
