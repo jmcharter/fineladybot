@@ -24,8 +24,8 @@ Currently, your best bet it to simply clone the repo and host the bot either loc
 The bot is written in Python and uses the [PRAW Library](https://praw.readthedocs.io/en/stable/).
 
 ## TO-DO
-- [ ] Store opt-out requests
-- [ ] Automatically add opt-out requests from messages sent to inbox
+- [X] Store opt-out requests
+- [X] Automatically add opt-out requests from messages sent to inbox
 - [ ] Store a list of subreddits to avoid
 - [ ] Allow subreddit mods to add their sub to the "banlist"
 

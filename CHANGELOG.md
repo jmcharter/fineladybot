@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.0
+- Rework stream parsing to handle submissions and inbox messages
+- Create a database to store opt-outs if one doesn't exist
+- Allow users to add themselves to the opt-out list by messaging the bot with subject "opt-out"
+
 ## 0.4.1
 - Add requirements.txt
 
