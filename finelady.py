@@ -3,6 +3,7 @@ import praw, logging, pathlib, os
 from dotenv import load_dotenv
 from datetime import datetime
 from urllib.parse import quote_plus
+from database import database
 
 load_dotenv()
 
@@ -15,6 +16,8 @@ logging.basicConfig(
 _logger = logging.getLogger("finelady_logger")
 _logger.info(f"FineLadyBot inititated at {datetime.now()}")
 
+db = database("finelady", _logger)
+
 
 def main():
     reddit = praw.Reddit(
@@ -25,9 +28,28 @@ def main():
         password=os.environ.get("REDDIT_PASSWORD"),
     )
 
-    for submission in reddit.subreddit("all").stream.submissions():
-        if "banbury" in submission.title.lower() and submission.subreddit != "banbury":
-            parse_submission(submission)
+    opt_out_list = db.query_users()
+
+    submission_stream = reddit.subreddit("all").stream.submissions(pause_after=-1)
+    message_stream = reddit.inbox.stream(pause_after=-1)
+
+    while True:
+        for submission in submission_stream:
+            if submission is None:
+                break
+            if (
+                "banbury" in submission.title.lower()
+                and submission.subreddit != "banbury"
+            ):
+                if submission.author.name not in opt_out_list:
+                    parse_submission(submission)
+
+        for message in message_stream:
+            if message is None:
+                break
+            if "opt_out" in message.subject:
+                message_date = datetime.fromtimestamp(message.created_utc)
+                db.add_opt_out_user(message.author.name, message_date)
 
 
 def get_opt_out_url():
