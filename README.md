@@ -1,5 +1,5 @@
 # FineLadyBot
-![version](https://img.shields.io/badge/Version-0.3.1-informational)
+![version](https://img.shields.io/badge/Version-0.4.1-informational)
 ![license-MIT](https://img.shields.io/github/license/jmcharter/fineladybot)
 
 FineLadyBot is a bot that runs on behalf of [/r/banbury](https://reddit.com/r/banbury), which is a subreddit for discussion of town in Oxfordshire, UK.
@@ -22,4 +22,10 @@ Currently, your best bet it to simply clone the repo and host the bot either loc
 ## Dependencies
 
 The bot is written in Python and uses the [PRAW Library](https://praw.readthedocs.io/en/stable/).
+
+## TO-DO
+- [ ] Store opt-out requests
+- [ ] Automatically add opt-out requests from messages sent to inbox
+- [ ] Store a list of subreddits to avoid
+- [ ] Allow subreddit mods to add their sub to the "banlist"
 
