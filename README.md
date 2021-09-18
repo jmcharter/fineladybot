@@ -26,6 +26,7 @@ The bot is written in Python and uses the [PRAW Library](https://praw.readthedoc
 ## TO-DO
 - [X] Store opt-out requests
 - [X] Automatically add opt-out requests from messages sent to inbox
-- [ ] Store a list of subreddits to avoid
-- [ ] Allow subreddit mods to add their sub to the "banlist"
+- [X] Store a list of subreddits to avoid
+- [X] Allow subreddit mods to add their sub to the "banlist"
+- [ ] Handle a txt file for perma-banned subs
 
