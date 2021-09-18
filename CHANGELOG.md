@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.0
+- Create subreddit banlist and ignore subs that are on it
+- Allow subreddit mods to add themselves to subreddit banlist
+
 ## 1.0.1
 - Create db file in same directory as script if it doesn't already exist
 

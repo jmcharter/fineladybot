@@ -58,7 +58,7 @@ class database:
             cur.execute(sql, (name, request_date))
 
     def add_opt_out_sub(self, subreddit, requestor, request_date):
-        sql = """INSERT OR IGNORE INTO opt_out_users(subreddit, requestor, request_date)
+        sql = """INSERT OR IGNORE INTO opt_out_subs(subreddit, requestor, request_date)
         VALUES(?,?,?);"""
         with self.db_connection() as con:
             cur = con.cursor()
@@ -71,3 +71,11 @@ class database:
             cur.execute(sql)
             users = cur.fetchall()
             return [user[0] for user in users]
+
+    def query_subs(self):
+        sql = """SELECT subreddit FROM opt_out_subs"""
+        with self.db_connection() as con:
+            cur = con.cursor()
+            cur.execute(sql)
+            subs = cur.fetchall()
+            return [sub[0] for sub in subs]
