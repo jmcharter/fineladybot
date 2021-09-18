@@ -56,7 +56,6 @@ def main():
                 db.add_opt_out_user(message.author.name, message_date)
             if "sub_opt_out" in message.subject:
                 parse_sub_opt_out(message, reddit)
-                print("Opting out sub")
 
 
 def get_opt_out_url():
@@ -102,12 +101,9 @@ def parse_submission(submission):
 def parse_sub_opt_out(message, reddit):
     message_date = datetime.fromtimestamp(message.created_utc)
     subreddit = reddit.subreddit(regex.search(r"(?<=/r/)\w*", message.body).group(0))
-    print(subreddit)
     if subreddit:
         subreddit_moderators = [mod for mod in subreddit.moderator()]
-        print(subreddit_moderators)
         from_mod = message.author.name in subreddit_moderators
-        print(from_mod)
         if from_mod:
             db.add_opt_out_sub(
                 subreddit.display_name, message.author.name, message_date
