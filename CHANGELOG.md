@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.1
+- Fix issue where old inbox messages were being passed, which could cause users/subs to be re-added to the banlist after removal
+
 ## 1.1.0
 - Create subreddit banlist and ignore subs that are on it
 - Allow subreddit mods to add themselves to subreddit banlist

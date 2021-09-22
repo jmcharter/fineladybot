@@ -32,7 +32,7 @@ def main():
     sub_opt_out_list = db.query_subs()
 
     submission_stream = reddit.subreddit("all").stream.submissions(pause_after=-1)
-    message_stream = reddit.inbox.stream(pause_after=-1)
+    message_stream = reddit.inbox.stream(pause_after=-1, skip_existing=1)
 
     while True:
         for submission in submission_stream:
