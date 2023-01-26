@@ -3,7 +3,7 @@ import praw, logging, pathlib, os, regex
 from dotenv import load_dotenv
 from datetime import datetime
 from urllib.parse import quote_plus
-from database import database
+from fineladybot.database import database
 
 load_dotenv()
 
