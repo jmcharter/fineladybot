@@ -16,9 +16,9 @@ class Database:
         con = None
         try:
             con = sqlite3.connect(str(filepath.joinpath(self.name)) + ".db")
-            # self.logger.info("Connected to finelady.db", sqlite3.version)
+            self.logger.info("Connected to finelady.db", sqlite3.version)
         except Error as e:
-            # self.logger.info(e)
+            self.logger.info(e)
             print(e)
 
         return con
