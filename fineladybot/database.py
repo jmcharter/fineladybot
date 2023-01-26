@@ -6,7 +6,7 @@ from pathlib import Path
 filepath = Path(__file__).parent.absolute()
 
 
-class database:
+class Database:
     def __init__(self, name, logger):
         self.name = name
         self.logger = logger

@@ -8,7 +8,7 @@ import praw, logging, pathlib, regex
 from praw.models import Submission, Message, Subreddit
 from praw.models.reddit.subreddit import SubredditStream
 
-from fineladybot.database import database
+from fineladybot.Database import Database
 from fineladybot.interfaces.reddit import PrawConfig, ParsedSubmission
 
 load_dotenv()
@@ -22,7 +22,7 @@ logging.basicConfig(
 _logger = logging.getLogger("finelady_logger")
 _logger.info(f"FineLadyBot inititated at {datetime.now()}")
 
-db = database("finelady", _logger)
+db = Database("finelady", _logger)
 
 
 def main() -> None:
