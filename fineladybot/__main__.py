@@ -8,7 +8,7 @@ import praw, logging, pathlib, regex
 from praw.models import Submission, Message, Subreddit
 from praw.models.reddit.subreddit import SubredditStream
 
-from fineladybot.Database import Database
+from fineladybot.database import Database
 from fineladybot.interfaces.reddit import PrawConfig, ParsedSubmission
 
 load_dotenv()
