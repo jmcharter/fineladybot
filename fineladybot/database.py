@@ -7,13 +7,13 @@ filepath = Path(__file__).parent.absolute()
 
 
 class Database:
-    def __init__(self, name, logger):
+    def __init__(self, name, logger) -> None:
         self.name = name
         self.logger = logger
         self.initialise_db()
 
-    def db_connection(self):
-        con = None
+    def db_connection(self) -> sqlite3.Connection:
+        con: sqlite3.Connection = None
         try:
             con = sqlite3.connect(str(filepath.joinpath(self.name)) + ".db")
             self.logger.info("Connected to finelady.db", sqlite3.version)
@@ -23,7 +23,7 @@ class Database:
 
         return con
 
-    def initialise_db(self):
+    def initialise_db(self) -> None:
         # Create user opt-out table
         user_opt_out_sql = """CREATE TABLE IF NOT EXISTS opt_out_users (
                 id integer PRIMARY KEY,
@@ -42,7 +42,7 @@ class Database:
         for query in [user_opt_out_sql, sub_opt_out_sql]:
             self._create_table(query)
 
-    def _create_table(self, sql, args=False):
+    def _create_table(self, sql: str, args: str = False) -> None:
         with self.db_connection() as con:
             cur = con.cursor()
             if args:
@@ -50,21 +50,21 @@ class Database:
             else:
                 cur.execute(sql)
 
-    def add_opt_out_user(self, name, request_date):
+    def add_opt_out_user(self, name: str, request_date: str) -> None:
         sql = """INSERT OR IGNORE INTO opt_out_users(username, request_date)
         VALUES(?,?);"""
         with self.db_connection() as con:
             cur = con.cursor()
             cur.execute(sql, (name, request_date))
 
-    def add_opt_out_sub(self, subreddit, requestor, request_date):
+    def add_opt_out_sub(self, subreddit: str, requestor: str, request_date: str) -> None:
         sql = """INSERT OR IGNORE INTO opt_out_subs(subreddit, requestor, request_date)
         VALUES(?,?,?);"""
         with self.db_connection() as con:
             cur = con.cursor()
             cur.execute(sql, (subreddit, requestor, request_date))
 
-    def query_users(self):
+    def query_users(self) -> list[str]:
         sql = """SELECT username FROM opt_out_users"""
         with self.db_connection() as con:
             cur = con.cursor()
@@ -72,7 +72,7 @@ class Database:
             users = cur.fetchall()
             return [user[0] for user in users]
 
-    def query_subs(self):
+    def query_subs(self) -> list[str]:
         sql = """SELECT subreddit FROM opt_out_subs"""
         with self.db_connection() as con:
             cur = con.cursor()
