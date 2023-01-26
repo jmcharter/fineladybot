@@ -6,7 +6,7 @@ from pathlib import Path
 filepath = Path(__file__).parent.absolute()
 
 
-class database:
+class Database:
     def __init__(self, name, logger):
         self.name = name
         self.logger = logger
@@ -16,9 +16,9 @@ class database:
         con = None
         try:
             con = sqlite3.connect(str(filepath.joinpath(self.name)) + ".db")
-            # self.logger.info("Connected to finelady.db", sqlite3.version)
+            self.logger.info("Connected to finelady.db", sqlite3.version)
         except Error as e:
-            # self.logger.info(e)
+            self.logger.info(e)
             print(e)
 
         return con
@@ -40,9 +40,9 @@ class database:
                 );"""
 
         for query in [user_opt_out_sql, sub_opt_out_sql]:
-            self.create_table(query)
+            self._create_table(query)
 
-    def create_table(self, sql, args=False):
+    def _create_table(self, sql, args=False):
         with self.db_connection() as con:
             cur = con.cursor()
             if args:
