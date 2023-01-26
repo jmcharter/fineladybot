@@ -46,6 +46,8 @@ def main() -> None:
     submission: Submission
     message: Message
     while True:
+        title_cache = []
+        max_cache_size = 20
         for submission in submission_stream:
             if submission is None:
                 break
@@ -53,8 +55,12 @@ def main() -> None:
                 if (
                     submission.author.name not in opt_out_list
                     and submission.subreddit.display_name not in sub_opt_out_list
+                    and submission.title not in title_cache
                 ):
                     crosspost_submission(submission)
+                    title_cache.append(submission.title)
+                    if len(title_cache) > max_cache_size:
+                        title_cache.pop(0)
 
         for message in message_stream:
             if message is None:
