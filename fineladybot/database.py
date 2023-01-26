@@ -40,9 +40,9 @@ class Database:
                 );"""
 
         for query in [user_opt_out_sql, sub_opt_out_sql]:
-            self.create_table(query)
+            self._create_table(query)
 
-    def create_table(self, sql, args=False):
+    def _create_table(self, sql, args=False):
         with self.db_connection() as con:
             cur = con.cursor()
             if args:
