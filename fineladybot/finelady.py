@@ -25,7 +25,7 @@ _logger.info(f"FineLadyBot inititated at {datetime.now()}")
 db = Database("finelady", _logger)
 
 
-def main() -> None:
+def run() -> None:
     praw_config = PrawConfig()
     reddit = praw.Reddit(
         client_id=praw_config.client_id,
@@ -132,7 +132,3 @@ def parse_sub_opt_out(message: Message, reddit: praw.Reddit) -> None:
         from_mod = message.author.name in subreddit_moderators
         if from_mod:
             db.add_opt_out_sub(subreddit.display_name, message.author.name, message_date)
-
-
-if __name__ == "__main__":
-    main()
