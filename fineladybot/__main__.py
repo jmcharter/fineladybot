@@ -92,8 +92,8 @@ def parse_submission(submission: Submission) -> ParsedSubmission:
     subreddit: Subreddit = submission.subreddit
     parsed_submission = ParsedSubmission(
         subreddit=subreddit,
-        opt_out_url=get_opt_out_url(subreddit),
-        sub_opt_out_url=get_sub_opt_out_url(),
+        opt_out_url=get_opt_out_url(),
+        sub_opt_out_url=get_sub_opt_out_url(subreddit),
         title=submission.title,
         url=submission.url,
         cross_post_title=f"{submission.title} [cross-posted from /r/{subreddit}]",
