@@ -1,6 +1,6 @@
 from praw.models import Subreddit
 
-from fineladybot.__main__ import get_opt_out_url, get_sub_opt_out_url
+from fineladybot.finelady import get_opt_out_url, get_sub_opt_out_url
 
 
 def test_get_opt_out_url():
