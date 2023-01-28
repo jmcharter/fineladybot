@@ -1,5 +1,5 @@
 from pydantic import BaseModel, BaseSettings, Field, validator
-from praw.models import Subreddit
+from praw.models import Subreddit  # type: ignore
 
 
 class PrawConfig(BaseSettings):
