@@ -1,5 +1,5 @@
 import click
-import finelady
+from fineladybot import finelady
 
 
 @click.group(invoke_without_command=True, help="CLI tool to run fineladybot and access related data.")

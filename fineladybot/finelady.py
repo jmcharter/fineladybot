@@ -126,7 +126,12 @@ def parse_sub_opt_out(message: Message, reddit: praw.Reddit) -> None:
     """Parse a request to opt out from being cross-posted by a sub moderator.
     Add the request to the database."""
     message_date = datetime.fromtimestamp(message.created_utc)
-    subreddit = reddit.subreddit(regex.search(r"(?<=/r/)\w*", message.body).group(0))
+    subreddit_regex_search = regex.search(r"(?<=/r/)\w*", message.body)
+    if subreddit_regex_search is not None:
+        subreddit_regex_result = subreddit_regex_search.group(0)
+    else:
+        raise ValueError("No match found.")
+    subreddit = reddit.subreddit(subreddit_regex_result)
     if subreddit:
         subreddit_moderators = [mod for mod in subreddit.moderator()]
         from_mod = message.author.name in subreddit_moderators

@@ -51,14 +51,14 @@ class Database:
             else:
                 cur.execute(sql)
 
-    def add_opt_out_user(self, name: str, request_date: str) -> None:
+    def add_opt_out_user(self, name: str, request_date: datetime) -> None:
         sql = """INSERT OR IGNORE INTO opt_out_users(username, request_date)
         VALUES(?,?);"""
         with self.db_connection() as con:
             cur = con.cursor()
             cur.execute(sql, (name, request_date))
 
-    def add_opt_out_sub(self, subreddit: str, requestor: str, request_date: str) -> None:
+    def add_opt_out_sub(self, subreddit: str, requestor: str, request_date: datetime) -> None:
         sql = """INSERT OR IGNORE INTO opt_out_subs(subreddit, requestor, request_date)
         VALUES(?,?,?);"""
         with self.db_connection() as con:

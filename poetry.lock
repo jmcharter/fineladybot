@@ -470,6 +470,18 @@ files = [
 ]
 
 [[package]]
+name = "types-docutils"
+version = "0.19.1.2"
+description = "Typing stubs for docutils"
+category = "dev"
+optional = false
+python-versions = "*"
+files = [
+    {file = "types-docutils-0.19.1.2.tar.gz", hash = "sha256:ca3d2135484adb52dd042bbddbd6eddcbbda8c608ba3f5e5f908bd548ffcb399"},
+    {file = "types_docutils-0.19.1.2-py3-none-any.whl", hash = "sha256:7be44dac1b160901308ac43762d5e89175105ed682092a3a1f08911d2573a470"},
+]
+
+[[package]]
 name = "types-regex"
 version = "2022.10.31.3"
 description = "Typing stubs for regex"
@@ -480,6 +492,21 @@ files = [
     {file = "types-regex-2022.10.31.3.tar.gz", hash = "sha256:da794a3393dae1eeca8473cbcaaf35ca5a227422bfa9a695d08ddda845fe4ab6"},
     {file = "types_regex-2022.10.31.3-py3-none-any.whl", hash = "sha256:d72701e8f3ed1cddbd29e3a957798565c694bd40f2e878fd22a4da1f6ec63c16"},
 ]
+
+[[package]]
+name = "types-setuptools"
+version = "65.7.0.3"
+description = "Typing stubs for setuptools"
+category = "dev"
+optional = false
+python-versions = "*"
+files = [
+    {file = "types-setuptools-65.7.0.3.tar.gz", hash = "sha256:c00f2dd1e6dcbb893faea4a57dbae80bb96d826b865d9ade8ae250a830cba10c"},
+    {file = "types_setuptools-65.7.0.3-py3-none-any.whl", hash = "sha256:b823969ea92a6d41d35933881d4c732248df834062e0d6f044c3eb36c446254e"},
+]
+
+[package.dependencies]
+types-docutils = "*"
 
 [[package]]
 name = "typing-extensions"
@@ -549,4 +576,4 @@ test = ["websockets"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "186a91c25706f22dabb86105c57b7e425af25e96ef7b7c6a5178e8e10bf6b144"
+content-hash = "ee652eee8d6902ce17772ab66020453006f627f7d093dcf5304e2ad2d6ae3192"
