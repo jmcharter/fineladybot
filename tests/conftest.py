@@ -1,5 +1,5 @@
 import pytest
-import praw.models
+import praw.models  # type: ignore
 
 
 @pytest.fixture
