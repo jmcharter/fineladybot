@@ -70,8 +70,10 @@ def run() -> None:
             if "user_opt_out" in message.subject:
                 message_date = datetime.fromtimestamp(message.created_utc)
                 db.add_opt_out_user(message.author.name, message_date)
+                opt_out_list.append(message.author.name)
             if "sub_opt_out" in message.subject:
-                parse_sub_opt_out(message, reddit)
+                subreddit = parse_sub_opt_out(message, reddit)
+                sub_opt_out_list.append(subreddit.display_name)
 
 
 def get_opt_out_url() -> str:
@@ -125,7 +127,7 @@ def crosspost_submission(submission: Submission) -> None:
     return crosspost
 
 
-def parse_sub_opt_out(message: Message, reddit: praw.Reddit) -> None:
+def parse_sub_opt_out(message: Message, reddit: praw.Reddit, db: Database = db) -> None:
     """Parse a request to opt out from being cross-posted by a sub moderator.
     Add the request to the database."""
     message_date = datetime.fromtimestamp(message.created_utc)
@@ -140,3 +142,4 @@ def parse_sub_opt_out(message: Message, reddit: praw.Reddit) -> None:
         from_mod = message.author.name in subreddit_moderators
         if from_mod:
             db.add_opt_out_sub(subreddit.display_name, message.author.name, message_date)
+    return subreddit
