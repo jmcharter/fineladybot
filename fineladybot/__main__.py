@@ -23,8 +23,8 @@ def run():
 
 
 @cli.command()
-@click.option("-u", "--users", is_flag=True)
-@click.option("-s", "--subreddits", is_flag=True)
+@click.option("-u", "--users", "user_flag", is_flag=True)
+@click.option("-s", "--subreddits", "subreddit_flag", is_flag=True)
 def list(user_flag: bool, subreddit_flag: bool):
     """Lists either user or subreddits from exclusion list"""
     if user_flag and subreddit_flag:
@@ -44,7 +44,7 @@ def list(user_flag: bool, subreddit_flag: bool):
         for sub in subs:
             click.echo(sub)
     else:
-        click.prompt("Use list --help for options to list")
+        click.echo("Use list --help for options to list")
 
 
 @cli.command()

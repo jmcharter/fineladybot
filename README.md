@@ -1,5 +1,5 @@
 # FineLadyBot
-![version](https://img.shields.io/badge/Version-1.1.1-informational)
+![version](https://img.shields.io/badge/Version-2.0.0-informational)
 ![license-MIT](https://img.shields.io/github/license/jmcharter/fineladybot)
 
 FineLadyBot is a bot that runs on behalf of [/r/banbury](https://reddit.com/r/banbury), which is a subreddit for discussion of town in Oxfordshire, UK.
@@ -8,25 +8,47 @@ In it's current state, the bot will scrape all new Reddit submissions and look f
 
 This occasionally results in false positives, where somebody with the surname 'Banbury' is the subject of the submission, or other non-UK locations are the subject.
 
-There is also potential for abuse with this. Given the size of the sub and the relative obscurity of the town though, I don't consider this a massive concern at present, but I do intend to address this at some point in the future.
+Two tables are maintained in an SQLite database to keep track of users and subs that wish to opt out from this bots actions.
 
-## Usage
-Simply install the bot and run the script. 
+# Installation
+Clone this repo and make sure you have [Poetry](https://python-poetry.org/) installed. Install the package using Poetry.
 
-Due to the nature of PRAW, the script is likely to crash semi-frequently either due to Reddit going down or other API related errors. Given this, I'd suggest setting this up on some type of cron job or as a daemon that restarts on crash.
+```sh
+poetry install
+```
 
-## Installation
+# Usage
 
-Currently, your best bet it to simply clone the repo and host the bot either locally or on some kind of server or cloud platform.
+You can either run the main script and have this bot scrape and respond indefinitely, ideally through a service manager like systemd, through docker or even through a cronjo; or just from the terminal.
 
-## Dependencies
+There is a CLI for ease of running the bot, as well as managing opt out lists.
 
-The bot is written in Python and uses the [PRAW Library](https://praw.readthedocs.io/en/stable/).
+This is a command line interface (CLI) tool for running and accessing data related to the fineladybot program. The tool allows you to list and exclude users or subreddits from the bot's cross-posting feature.
 
-## TO-DO
-- [X] Store opt-out requests
-- [X] Automatically add opt-out requests from messages sent to inbox
-- [X] Store a list of subreddits to avoid
-- [X] Allow subreddit mods to add their sub to the "banlist"
-- [ ] Handle a txt file for perma-banned subs
+To use this tool, you need to have click and enum libraries installed.
 
+There are three main commands available:
+
+- run: This command runs the bot until stopped.
+
+```sh
+poetry run python fineladybot run
+```
+
+- list: This command lists either the users or subreddits that have been excluded from cross-posting. You can use the --users or --subreddits option to specify which list you want to see.
+
+```sh
+poetry run python fineladybot list --users
+```
+
+- exclude: This command allows you to add a user or subreddit to the exclusion list, so their posts are never cross-posted. You can provide the username or subreddit name using the -u or -s options respectively. If no option is provided, the tool will prompt you to choose between excluding a user or subreddit.
+
+```sh
+poetry run python fineladybot exclude -u steve
+```
+
+# Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
