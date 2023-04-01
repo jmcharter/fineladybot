@@ -35,6 +35,8 @@ def run() -> None:
         password=praw_config.password,
     )
 
+    # TODO Looks like opt out lists are only checked once at the start. These should be queried regularly
+    # Probably using some kind of cache to avoid repeatedly hitting the db
     opt_out_list = db.query_users()
     sub_opt_out_list = db.query_subs()
 
@@ -57,8 +59,8 @@ def run() -> None:
                     and submission.subreddit.display_name not in sub_opt_out_list
                     and submission.title not in title_cache
                 ):
-                    crosspost_submission(submission)
-                    title_cache.append(submission.title)
+                    crosspost = crosspost_submission(submission)
+                    title_cache.append(crosspost.title.split("[cross-posted from /r/")[0])
                     if len(title_cache) > max_cache_size:
                         title_cache.pop(0)
 
@@ -120,6 +122,7 @@ def crosspost_submission(submission: Submission) -> None:
     _logger.info(
         f"[{datetime.now()}]Cross-posted '{parsed_submission.title}' from {parsed_submission.subreddit} to /r/banbury URL: {parsed_submission.url}"
     )
+    return crosspost
 
 
 def parse_sub_opt_out(message: Message, reddit: praw.Reddit) -> None:
